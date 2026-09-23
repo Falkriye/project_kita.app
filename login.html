@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Masuk / Daftar — ProjectKita</title>
+<meta name="theme-color" content="#0b1e3d" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/favicon-32.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <div class="auth-page">
+      <div class="auth-brand">ProjectKita</div>
+
+      <div class="auth-tabs" role="tablist" aria-label="Pilih Masuk atau Daftar">
+        <button class="auth-tab active" id="tabLogin" role="tab" aria-selected="true" aria-controls="formLogin">Masuk</button>
+        <button class="auth-tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="formRegister">Daftar</button>
+      </div>
+
+      <div class="auth-card">
+
+        <!-- ===== LOGIN ===== -->
+        <form class="auth-form active" id="formLogin" novalidate>
+          <h2>Selamat Datang Kembali</h2>
+          <p class="auth-sub">Silakan masukkan detail akun Anda untuk melanjutkan.</p>
+
+          <div class="field" id="loginEmailField">
+            <label for="loginEmail">Alamat Email</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+              <input type="email" id="loginEmail" name="email" placeholder="nama@email.com" autocomplete="email" required />
+            </div>
+            <p class="field-error">Masukkan alamat email yang valid.</p>
+          </div>
+
+          <div class="field" id="loginPasswordField">
+            <div class="field-hint">
+              <label for="loginPassword">Kata Sandi</label>
+              <a href="#" id="forgotPasswordLink">Lupa Password?</a>
+            </div>
+            <div class="input-wrap has-toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+              <input type="password" id="loginPassword" name="password" placeholder="••••••••" autocomplete="current-password" required minlength="6" />
+              <button type="button" class="toggle-visibility" data-target="loginPassword" aria-label="Tampilkan kata sandi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <p class="field-error">Kata sandi minimal 6 karakter.</p>
+          </div>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="rememberMe" />
+            Ingat saya untuk login berikutnya
+          </label>
+
+          <button type="submit" class="btn btn-primary">
+            Masuk
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+
+          <p class="auth-switch">
+            Belum punya akun?
+            <button type="button" id="goRegister">Daftar Sekarang</button>
+          </p>
+        </form>
+
+        <!-- ===== REGISTER ===== -->
+        <form class="auth-form" id="formRegister" novalidate>
+          <h2>Buat Akun Baru</h2>
+          <p class="auth-sub">Isi data di bawah untuk mulai menggunakan ProjectKita.</p>
+
+          <div class="field" id="registerNameField">
+            <label for="registerName">Nama Lengkap</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>
+              <input type="text" id="registerName" name="name" placeholder="Nama lengkap Anda" autocomplete="name" required />
+            </div>
+            <p class="field-error">Nama wajib diisi.</p>
+          </div>
+
+          <div class="field" id="registerEmailField">
+            <label for="registerEmail">Alamat Email</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+              <input type="email" id="registerEmail" name="email" placeholder="nama@email.com" autocomplete="email" required />
+            </div>
+            <p class="field-error">Masukkan alamat email yang valid.</p>
+          </div>
+
+          <div class="field" id="registerPasswordField">
+            <label for="registerPassword">Kata Sandi</label>
+            <div class="input-wrap has-toggle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+              <input type="password" id="registerPassword" name="password" placeholder="Minimal 6 karakter" autocomplete="new-password" required minlength="6" />
+              <button type="button" class="toggle-visibility" data-target="registerPassword" aria-label="Tampilkan kata sandi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <p class="field-error">Kata sandi minimal 6 karakter.</p>
+          </div>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="agreeTerms" required />
+            Saya menyetujui Syarat &amp; Ketentuan ProjectKita
+          </label>
+
+          <button type="submit" class="btn btn-primary">Buat Akun</button>
+
+          <p class="auth-switch">
+            Sudah punya akun?
+            <button type="button" id="goLogin">Masuk di Sini</button>
+          </p>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
