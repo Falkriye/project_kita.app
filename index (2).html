@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ProjectKita</title><meta name="theme-color" content="#0B1E3D"><link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="ProjectKita">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1E3D;--blue:#0756D9;--bg:#F7F9FC;--card:#fff;--tx:#0B1E3D;--mut:#6B7280;--bd:#E5E9F0}
+[data-theme=dark]{--bg:#0A1426;--card:#112240;--tx:#E8EEF8;--mut:#9AA7BD;--bd:#1E3358}
+body{font-family:Poppins,sans-serif;background:var(--bg);color:var(--tx);padding-bottom:env(safe-area-inset-bottom)}
+h1,h2,h3,h4,h5,h6{font-weight:700}.mut{color:var(--mut)}.blue{color:var(--blue)}
+.pk{background:var(--card);border:1px solid var(--bd);border-radius:16px;box-shadow:0 4px 16px rgba(11,30,61,.06);transition:.25s}
+.pk.hov{cursor:pointer}.pk.hov:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(7,86,217,.16)}
+.btn{border-radius:12px;font-weight:600;position:relative;overflow:hidden}
+.btn-pk{background:var(--blue);color:#fff;border:0}.btn-pk:hover{background:#0545b0;color:#fff}
+.btn-out{border:1px solid var(--bd);color:var(--tx);background:var(--card)}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:rp .6s linear;pointer-events:none}
+@keyframes rp{to{transform:scale(4);opacity:0}}
+.form-control,.form-select{border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:.65rem .9rem}
+.form-control:focus,.form-select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(7,86,217,.15);background:var(--card);color:var(--tx)}
+.av{border-radius:50%;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.badge-pk{background:rgba(7,86,217,.1);color:var(--blue);border-radius:20px;font-weight:500;padding:.35em .8em;font-size:.75rem}
+.star{color:#F59E0B}
+#splash{position:fixed;inset:0;background:linear-gradient(160deg,#0B1E3D,#0756D9);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+.logo{width:84px;height:84px;border-radius:24px;background:#fff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:800}
+.ld{width:160px;height:5px;border-radius:5px;background:rgba(255,255,255,.25);margin-top:28px;overflow:hidden}.ld i{display:block;height:100%;width:0;background:#fff}
+#auth{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(160deg,#0B1E3D,#0756D9)}
+.side{position:fixed;left:0;top:0;bottom:0;width:240px;background:var(--navy);color:#fff;padding:22px 14px;display:none;flex-direction:column;z-index:100}
+.side a{color:#B8C4DA;padding:.7rem 1rem;border-radius:12px;display:flex;gap:12px;align-items:center;text-decoration:none;cursor:pointer;margin-bottom:4px;transition:.2s}
+.side a:hover,.side a.on{background:rgba(255,255,255,.12);color:#fff}
+.top{position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px solid var(--bd);padding:.7rem 1rem;display:flex;align-items:center;gap:12px}
+.bot{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:60}
+.bot a{color:var(--mut);text-align:center;font-size:.68rem;cursor:pointer;position:relative;flex:1}.bot a i{display:block;font-size:1.15rem}.bot a.on{color:var(--blue)}
+.fab{position:fixed;right:18px;bottom:86px;width:56px;height:56px;border-radius:50%;z-index:70;box-shadow:0 8px 24px rgba(7,86,217,.4);font-size:1.2rem}
+main{padding:18px 16px 110px;max-width:1100px;margin:auto}
+@media(min-width:992px){.side{display:flex}.bot{display:none}#shell{margin-left:240px}.fab{bottom:28px}main{padding-bottom:40px}}
+.bn{background:linear-gradient(120deg,#0B1E3D,#0756D9);color:#fff;border-radius:20px;padding:22px}
+.hs{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px}.hs>*{flex:0 0 240px}
+.cat{text-align:center;padding:14px 6px;cursor:pointer}.cat i{font-size:1.4rem;color:var(--blue);margin-bottom:6px}
+.bar{height:8px;border-radius:8px;background:var(--bd);overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--blue);border-radius:8px}
+.tile{height:120px;border-radius:14px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.8rem;cursor:pointer;transition:.25s}.tile:hover{transform:scale(1.03)}
+.sk{background:linear-gradient(90deg,var(--bd),transparent,var(--bd));background-size:200% 100%;animation:sk 1.2s infinite;border-radius:14px;height:110px;margin-bottom:12px}
+@keyframes sk{to{background-position:-200% 0}}
+.msg{max-width:78%;padding:.55rem .9rem;border-radius:16px;margin-bottom:8px;font-size:.92rem}
+.msg.me{background:var(--blue);color:#fff;margin-left:auto;border-bottom-right-radius:4px}.msg.th{background:var(--card);border:1px solid var(--bd);border-bottom-left-radius:4px}
+#toasts{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:99999;display:flex;flex-direction:column;gap:8px}
+.tst{background:var(--navy);color:#fff;padding:.7rem 1.1rem;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:.9rem}
+.modal-content{background:var(--card);color:var(--tx);border-radius:18px;border:1px solid var(--bd)}
+.dot{position:absolute;top:-4px;right:calc(50% - 18px);background:#EF4444;color:#fff;border-radius:10px;font-size:.6rem;padding:1px 5px}
+.empty{text-align:center;padding:40px 10px;color:var(--mut)}.empty i{font-size:2.4rem;margin-bottom:10px}
+</style></head><body>
+<div id="splash"><div class="logo" id="sl" style="overflow:hidden"><img src="icons/icon-192.png" alt="ProjectKita" style="width:100%;height:100%"></div><h3 class="mt-3 mb-0" id="st" style="opacity:0">ProjectKita</h3><small style="opacity:.7">Temukan talent. Wujudkan project.</small><div class="ld"><i id="lb"></i></div></div>
+<div id="auth" style="display:none"><div class="pk p-4" style="width:100%;max-width:420px">
+<div class="text-center mb-3"><img class="mx-auto d-block" src="icons/icon-192.png" alt="ProjectKita" style="width:72px;height:72px;border-radius:18px"><h4 class="mt-2 mb-0">ProjectKita</h4><small class="mut">Marketplace freelance Indonesia</small></div>
+<div class="btn-group w-100 mb-3"><button class="btn btn-pk" id="tl" onclick="authTab('l')">Masuk</button><button class="btn btn-out" id="tr" onclick="authTab('r')">Daftar</button></div>
+<div id="fl"><input class="form-control mb-2" id="li" placeholder="Email atau username"><input type="password" class="form-control mb-2" id="lp" placeholder="Password">
+<div class="form-check mb-3"><input type="checkbox" class="form-check-input" id="lr" checked><label class="form-check-label small" for="lr">Ingat saya</label></div>
+<button class="btn btn-pk w-100 py-2" onclick="doLogin()">Masuk</button><div class="text-center mt-3 small mut">Demo: demo@gmail.com / 123456 <a href="#" onclick="event.preventDefault();li.value='demo@gmail.com';lp.value='123456'">isi otomatis</a></div></div>
+<div id="fr" style="display:none"><input class="form-control mb-2" id="rn" placeholder="Nama lengkap"><input class="form-control mb-2" id="ru" placeholder="Username"><input class="form-control mb-2" id="re" placeholder="Email"><input type="password" class="form-control mb-2" id="rp" placeholder="Password (min. 6 karakter)">
+<select class="form-select mb-3" id="rl"><option value="talent">Saya Talent</option><option value="client">Saya Client</option></select><button class="btn btn-pk w-100 py-2" onclick="doReg()">Buat Akun</button></div>
+<div class="text-danger small mt-2 text-center" id="ae"></div></div></div>
+<aside class="side" id="side"></aside>
+<div id="shell" style="display:none"><div class="top"><div class="d-lg-none fw-bold blue fs-5">ProjectKita</div><div class="flex-grow-1"></div>
+<button class="btn btn-out btn-sm d-none" id="inst" onclick="install()"><i class="fa fa-download"></i> Install</button>
+<button class="btn btn-out btn-sm" onclick="theme()"><i class="fa fa-moon"></i></button>
+<button class="btn btn-out btn-sm position-relative" onclick="go('/notif')"><i class="fa fa-bell"></i><span class="dot" id="nd"></span></button></div>
+<main id="view"></main><button class="btn btn-pk fab" onclick="go('/post')"><i class="fa fa-plus"></i></button><nav class="bot" id="bot"></nav></div>
+<div id="toasts"></div>
+<div class="modal fade" id="md"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header border-0"><h5 class="modal-title" id="mt"></h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body" id="mb"></div><div class="modal-footer border-0" id="mf2"></div></div></div></div>
+<div class="modal fade" id="vw"><div class="modal-dialog modal-fullscreen"><div class="modal-content" id="vc" style="border-radius:0"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],LS=localStorage;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rp=n=>'Rp'+Number(n).toLocaleString('id-ID'),now=()=>new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+const hs=s=>{let h=5381;for(const c of s)h=((h<<5)+h+c.charCodeAt(0))>>>0;return 'h'+h.toString(36)};
+const G=['#0756D9,#0B1E3D','#7C3AED,#0756D9','#06B6D4,#0756D9','#F59E0B,#EF4444','#10B981,#0756D9','#EC4899,#7C3AED'];
+const anim=o=>{try{window.anime&&anime(o)}catch(e){}};
+/* ===== DATA (JSON dummy) ===== */
+const SEED={cats:[{id:'design',n:'Desain Grafis',i:'fa-palette'},{id:'video',n:'Video Editing',i:'fa-film'},{id:'content',n:'Konten Kreatif',i:'fa-pen-nib'},{id:'photo',n:'Fotografi',i:'fa-camera'},{id:'social',n:'Social Media',i:'fa-hashtag'},{id:'web',n:'Web Dev',i:'fa-code'}],
+talents:[
+{id:'t1',name:'Alya Rahmawati',user:'alyadesign',role:'Graphic Designer',cat:'design',rating:4.9,yrs:5,rate:45000,bio:'Spesialis branding & identitas visual untuk UMKM dan startup. Fokus pada desain yang bersih dan konsisten.',skills:[['Branding',95],['Adobe Illustrator',90],['Figma',85]],exp:'5 tahun sebagai desainer freelance, 40+ klien UMKM.',port:['Logo Kopi Senja','Brand Kit Tokoku','Packaging Jamu']},
+{id:'t2',name:'Raka Pratama',user:'rakacut',role:'Video Editor',cat:'video',rating:4.8,yrs:4,rate:40000,bio:'Editor video untuk Reels, TikTok, YouTube, dan company profile dengan gaya sinematik.',skills:[['Premiere Pro',92],['After Effects',80],['Color Grading',85]],exp:'4 tahun edit konten untuk brand F&B dan fashion.',port:['Company Profile Resto','Reels Fashion','Vlog Wisata Solo']},
+{id:'t3',name:'Nadia Putri',user:'nadiawrites',role:'Content Creator',cat:'content',rating:4.7,yrs:3,rate:25000,bio:'Copywriter & content planner. Membuat konten yang bercerita dan konversi tinggi.',skills:[['Copywriting',92],['Content Planning',88],['SEO',75]],exp:'3 tahun menangani konten brand lokal.',port:['Kalender Konten 30 Hari','Caption Skincare','Artikel Blog Kuliner']},
+{id:'t4',name:'Bima Saputra',user:'bimalens',role:'Photographer',cat:'photo',rating:4.9,yrs:6,rate:49000,bio:'Fotografer produk, kuliner, dan event dengan peralatan studio lengkap.',skills:[['Product Photo',95],['Lightroom',90],['Videografi',78]],exp:'6 tahun, pernah liputan 100+ event.',port:['Katalog Batik','Food Styling Warung','Wedding Highlight']},
+{id:'t5',name:'Salsa Maharani',user:'salsasosmed',role:'Social Media Specialist',cat:'social',rating:4.6,yrs:3,rate:30000,bio:'Mengelola Instagram, TikTok, dan Facebook Ads untuk bisnis lokal Solo Raya.',skills:[['Social Strategy',90],['Meta Ads',82],['Analytics',80]],exp:'3 tahun di agensi digital marketing.',port:['Growth IG Kafe','Campaign Ramadan','Laporan Insight']},
+{id:'t6',name:'Dimas Aditya',user:'dimasdev',role:'Web Developer',cat:'web',rating:4.8,yrs:5,rate:48000,bio:'Membangun website company profile, toko online, dan PWA yang cepat dan responsif.',skills:[['JavaScript',92],['HTML/CSS',95],['PWA',85]],exp:'5 tahun full-stack freelance.',port:['Web Toko Batik','PWA Kasir','Landing Page Event']}],
+projects:[
+{id:'p1',title:'Desain Logo Kedai Kopi',desc:'Butuh logo sederhana dan palet warna untuk kedai kopi baru di Sukoharjo.',cat:'design',budget:45000,deadline:'2026-11-15',skills:['Logo','Branding','Illustrator'],client:'Kopi Lereng',app:8,date:'2 hari lalu'},
+{id:'p2',title:'Editing 3 Video Reels',desc:'Edit 3 video Reels/TikTok pendek untuk restoran, bahan mentah disediakan.',cat:'video',budget:45000,deadline:'2026-11-01',skills:['Premiere Pro','Reels','Subtitle'],client:'Pinarak Resto',app:14,date:'1 hari lalu'},
+{id:'p3',title:'Kalender Konten Instagram 30 Hari',desc:'Perencanaan dan caption konten Instagram untuk brand skincare lokal.',cat:'content',budget:35000,deadline:'2026-10-25',skills:['Copywriting','Planning'],client:'Glow Local',app:21,date:'5 jam lalu'},
+{id:'p4',title:'Foto 10 Produk Batik',desc:'Sesi foto 10 produk batik dengan background putih.',cat:'photo',budget:40000,deadline:'2026-11-10',skills:['Product Photo','Lightroom'],client:'Batik Laweyan',app:6,date:'3 hari lalu'},
+{id:'p5',title:'Kelola Sosial Media 1 Minggu',desc:'Kelola IG & TikTok bisnis kuliner selama 1 minggu: konten dan jadwal posting.',cat:'social',budget:49000,deadline:'2026-12-01',skills:['Social Strategy','Reporting'],client:'Warung Nusantara',app:11,date:'1 minggu lalu'},
+{id:'p6',title:'Landing Page 1 Halaman',desc:'Landing page responsif 1 halaman untuk usaha kecil.',cat:'web',budget:49000,deadline:'2026-12-10',skills:['HTML/CSS','JavaScript','PWA'],client:'CV Karya Mandiri',app:9,date:'4 hari lalu'}],
+rev:[['Budi S.',5,'Hasil rapi, komunikatif, dan tepat waktu. Sangat direkomendasikan!'],['Rina A.',5,'Sesuai brief dan revisi cepat. Pasti order lagi.'],['Toko Maju',4,'Kualitas bagus, harga sepadan.']]};
+let DB=JSON.parse(LS.pk_db||'null');
+function save(){LS.pk_db=JSON.stringify(DB)}
+if(!DB){DB={users:[{id:'u0',name:'Demo User',username:'demo',email:'demo@gmail.com',pw:hs('123456'),role:'talent',bio:'Freelancer kreatif yang suka membuat desain dan konten.',skills:[['Canva',85],['Content Planning',75]],exp:'2 tahun pengalaman freelance.',port:[],done:['Poster Event Kampus','Konten IG Kafe']}],
+projects:SEED.projects,bm:[],chats:{t1:[{me:0,t:'Halo, ada yang bisa dibantu?',h:'09:10'}]},reviews:{},applies:[],
+notifs:[{id:1,i:'fa-briefcase',t:'Project baru: Desain Logo Kedai Kopi',h:'2 jam lalu',r:0},{id:2,i:'fa-envelope',t:'Alya Rahmawati mengirim pesan',h:'3 jam lalu',r:0},{id:3,i:'fa-rotate',t:'Update: 5 project baru di kategori Video Editing',h:'Kemarin',r:1}]};save()}
+if(DB.ver!==2){DB.projects=DB.projects.map(p=>{const q=SEED.projects.find(x=>x.id==p.id);return q?{...p,title:q.title,desc:q.desc,budget:q.budget}:{...p,budget:Math.min(p.budget,49000)}});DB.ver=2;save()}
+const me=()=>DB.users.find(u=>u.id==(LS.pk_sess||sessionStorage.pk_sess));
+const T=id=>SEED.talents.find(t=>t.id==id),P=id=>DB.projects.find(p=>p.id==id);
+const cat=id=>SEED.cats.find(c=>c.id==id)||{n:id,i:'fa-star'};
+function notify(i,t){DB.notifs.unshift({id:Date.now(),i,t,h:'Baru saja',r:0});save();badge()}
+function badge(){const n=DB.notifs.filter(x=>!x.r).length;$('#nd').textContent=n||'';$('#nd').style.display=n?'':'none';$$('.bd').forEach(e=>e.textContent=n||'')}
+function toast(m){const d=document.createElement('div');d.className='tst';d.innerHTML=m;$('#toasts').append(d);anim({targets:d,opacity:[0,1],translateY:[-14,0],duration:300});setTimeout(()=>{d.style.opacity=0;d.style.transition='.3s';setTimeout(()=>d.remove(),300)},2400)}
+function modal(title,body,ok,label='Simpan',danger){$('#mt').textContent=title;$('#mb').innerHTML=body;const f=$('#mf2');f.innerHTML='<button class="btn btn-out" data-bs-dismiss="modal">Batal</button>'+(ok?`<button class="btn ${danger?'btn-danger':'btn-pk'}" id="mok">${label}</button>`:'');const m=bootstrap.Modal.getOrCreateInstance($('#md'));if(ok)$('#mok').onclick=()=>{if(ok()!==false)m.hide()};m.show()}
+const av=(n,s=48)=>`<div class="av" style="width:${s}px;height:${s}px;font-size:${s/2.6}px;background:linear-gradient(135deg,${G[n.length%6]})">${esc(n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase())}</div>`;
+const stars=r=>[1,2,3,4,5].map(i=>`<i class="fa${r>=i-.25?'s':'r'} fa-star star" style="font-size:.75rem"></i>`).join('');
+const avg=id=>{const t=T(id),r=DB.reviews[id]||[];return +((t.rating*5+r.reduce((a,b)=>a+b.r,0))/(5+r.length)).toFixed(1)};
+/* ===== AUTH ===== */
+function authTab(x){fl.style.display=x=='l'?'':'none';fr.style.display=x=='r'?'':'none';tl.className='btn '+(x=='l'?'btn-pk':'btn-out');tr.className='btn '+(x=='r'?'btn-pk':'btn-out');ae.textContent=''}
+const okMail=e=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
+function doLogin(){const i=li.value.trim().toLowerCase(),u=DB.users.find(x=>x.email==i||x.username==i);
+if(!i||!lp.value)return ae.textContent='Isi email/username dan password.';
+if(!u||u.pw!=hs(lp.value))return ae.textContent='Email/username atau password salah.';
+delete LS.pk_sess;sessionStorage.removeItem('pk_sess');(lr.checked?LS:sessionStorage).pk_sess=u.id;boot();toast('Selamat datang, '+esc(u.name.split(' ')[0])+'!')}
+function doReg(){const n=rn.value.trim(),u=ru.value.trim().toLowerCase(),e=re.value.trim().toLowerCase();
+if(n.length<2||u.length<3)return ae.textContent='Nama min. 2 & username min. 3 karakter.';
+if(!okMail(e))return ae.textContent='Format email tidak valid.';
+if(rp.value.length<6)return ae.textContent='Password minimal 6 karakter.';
+if(DB.users.some(x=>x.email==e||x.username==u))return ae.textContent='Email/username sudah terdaftar.';
+const id='u'+Date.now();DB.users.push({id,name:n,username:u,email:e,pw:hs(rp.value),role:rl.value,bio:'Halo! Saya pengguna baru ProjectKita.',skills:[],exp:'',port:[],done:[]});
+notify('fa-circle-check','Akun berhasil dibuat. Lengkapi profilmu!');save();LS.pk_sess=id;boot();toast('Akun berhasil dibuat')}
+function logout(){modal('Keluar akun?','<p class="mb-0">Sesi login akan diakhiri.</p>',()=>{delete LS.pk_sess;sessionStorage.removeItem('pk_sess');location.hash='';boot()},'Keluar',1)}
+/* ===== SHELL / ROUTER ===== */
+const NAV=[['/home','fa-house','Beranda'],['/explore','fa-compass','Explore'],['/messages','fa-comments','Pesan'],['/notif','fa-bell','Notifikasi'],['/profile','fa-user','Profil']];
+function boot(){const u=me();$('#splash').style.display='none';$('#auth').style.display=u?'none':'flex';$('#shell').style.display=u?'':'none';$('#side').style.display=u?'':'none';
+if(!u)return;$('#side').innerHTML='<div class="d-flex align-items-center gap-2 mb-4 px-2"><img src="icons/icon-192.png" alt="PK" style="width:40px;height:40px;border-radius:12px"><b class="fs-5">ProjectKita</b></div>'+NAV.concat([['/bookmarks','fa-bookmark','Bookmark'],['/post','fa-square-plus','Posting Project']]).map(n=>`<a data-p="${n[0]}" onclick="go('${n[0]}')"><i class="fa ${n[1]}" style="width:20px"></i>${n[2]}${n[0]=='/notif'?'<span class="badge bg-danger ms-auto bd"></span>':''}</a>`).join('')+'<a class="mt-auto" onclick="logout()"><i class="fa fa-right-from-bracket" style="width:20px"></i>Keluar</a>';
+$('#bot').innerHTML=NAV.map(n=>`<a data-p="${n[0]}" onclick="go('${n[0]}')"><i class="fa ${n[1]}"></i>${n[2]}${n[0]=='/notif'?'<span class="dot bd"></span>':''}</a>`).join('');
+badge();if(!location.hash)location.hash='/home';else route()}
+const go=p=>{if(location.hash=='#'+p)route();else location.hash=p};
+addEventListener('hashchange',route);
+const V={home:vHome,explore:vExplore,project:vProject,talent:vTalent,post:vPost,profile:vProfile,messages:vMsgs,chat:vChat,notif:vNotif,bookmarks:vBm};
+function route(){if(!me())return;const[,pg='home',id]=location.hash.slice(1).split('/');
+$$('[data-p]').forEach(a=>a.classList.toggle('on',a.dataset.p=='/'+pg));
+const v=$('#view');v.innerHTML='<div class="sk"></div><div class="sk"></div><div class="sk"></div>';scrollTo(0,0);
+setTimeout(()=>{try{v.innerHTML=(V[pg]||vHome)(id);anim({targets:'#view > *',opacity:[0,1],translateY:[12,0],delay:anime.stagger?anime.stagger(50):0,duration:380,easing:'easeOutQuad'});
+anim({targets:'.bar i',width:e=>e.dataset.w+'%',duration:900,easing:'easeOutExpo'});if(pg=='explore')exList();if(pg=='chat'){const c=$('#chat');c&&(c.scrollTop=c.scrollHeight)}}catch(e){v.innerHTML='<div class="empty"><i class="fa fa-triangle-exclamation"></i><p>Terjadi kesalahan.</p></div>';console.error(e)}},220)}
+/* ===== CARDS ===== */
+const bmBtn=k=>`<button class="btn btn-sm border-0 p-0" onclick="bm('${k}',this,event)"><i class="${DB.bm.includes(k)?'fas blue':'far mut'} fa-bookmark fs-5"></i></button>`;
+function bm(k,b,e){e.stopPropagation();const i=DB.bm.indexOf(k);i<0?DB.bm.push(k):DB.bm.splice(i,1);save();b.firstChild.className=(i<0?'fas blue':'far mut')+' fa-bookmark fs-5';anim({targets:b,scale:[1.4,1],duration:300});toast(i<0?'Ditambahkan ke bookmark':'Dihapus dari bookmark')}
+const tCard=t=>`<div class="pk hov p-3 h-100" onclick="go('/talent/${t.id}')"><div class="d-flex gap-3">${av(t.name)}<div class="flex-grow-1"><div class="fw-bold">${t.name}</div><small class="mut">${t.role}</small><div>${stars(avg(t.id))} <small class="mut">${avg(t.id)}</small></div></div>${bmBtn(t.id)}</div><div class="d-flex justify-content-between align-items-center mt-3"><span class="badge-pk">${cat(t.cat).n}</span><small class="fw-semibold">${rp(t.rate)}<span class="mut">/proyek</span></small></div></div>`;
+const pCard=p=>`<div class="pk hov p-3 h-100" onclick="go('/project/${p.id}')"><div class="d-flex justify-content-between"><span class="badge-pk">${cat(p.cat).n}</span>${bmBtn(p.id)}</div><div class="fw-bold mt-2">${esc(p.title)}</div><small class="mut d-block mb-2">${esc(p.client)} · ${p.date}</small><div class="d-flex justify-content-between"><b class="blue">${rp(p.budget)}</b><small class="mut"><i class="fa fa-users"></i> ${p.app} pelamar</small></div></div>`;
+const empty=(i,t)=>`<div class="empty"><i class="fa ${i} d-block"></i><p>${t}</p></div>`;
+/* ===== VIEWS ===== */
+function vHome(){const u=me(),h=new Date().getHours(),g=h<11?'Selamat pagi':h<15?'Selamat siang':h<19?'Selamat sore':'Selamat malam';
+return `<div class="mb-3"><h4 class="mb-0">${g}, ${esc(u.name.split(' ')[0])} 👋</h4><small class="mut">Mau cari talent atau project apa hari ini?</small></div>
+<div class="position-relative mb-3"><i class="fa fa-search position-absolute mut" style="left:16px;top:15px"></i><input class="form-control ps-5" placeholder="Cari talent atau project..." onkeydown="if(event.key=='Enter'){EX.q=this.value;EX.cat='';go('/explore')}"></div>
+<div class="bn mb-4"><span class="badge bg-light text-dark mb-2">Promo</span><h5>Posting project pertamamu gratis!</h5><p class="small mb-3" style="opacity:.85">Temukan freelancer terbaik untuk kebutuhan kreatifmu.</p><button class="btn btn-light btn-sm" onclick="go('/post')">Posting Sekarang</button></div>
+<div class="row g-2 mb-4 text-center">${[['/explore','fa-compass','Explore'],['/post','fa-square-plus','Posting'],['/messages','fa-comments','Pesan'],['/profile','fa-user','Profil']].map(s=>`<div class="col-3"><div class="pk hov py-3" onclick="go('${s[0]}')"><i class="fa ${s[1]} blue fs-5"></i><div class="small mt-1">${s[2]}</div></div></div>`).join('')}</div>
+<h6 class="mb-2">Kategori Populer</h6><div class="row g-2 mb-4">${SEED.cats.map(c=>`<div class="col-4 col-md-2"><div class="pk hov cat" onclick="EX.cat='${c.id}';EX.q='';go('/explore')"><i class="fa ${c.i} d-block"></i><small>${c.n}</small></div></div>`).join('')}</div>
+<h6 class="mb-2">Talent Rekomendasi</h6><div class="hs mb-4">${[...SEED.talents].sort((a,b)=>avg(b.id)-avg(a.id)).slice(0,5).map(tCard).join('')}</div>
+<div class="d-flex justify-content-between"><h6>Project Terbaru</h6><a class="small blue" href="#/explore" onclick="EX.tab='project'">Lihat semua</a></div><div class="row g-3">${DB.projects.slice(0,4).map(p=>`<div class="col-md-6">${pCard(p)}</div>`).join('')}</div>`}
+let EX={tab:'talent',q:'',cat:'',bud:0,rat:0,yrs:0};
+function vExplore(){return `<h4 class="mb-3">Explore</h4><div class="btn-group w-100 mb-3"><button class="btn ${EX.tab=='talent'?'btn-pk':'btn-out'}" onclick="EX.tab='talent';go('/explore')">Talent</button><button class="btn ${EX.tab=='project'?'btn-pk':'btn-out'}" onclick="EX.tab='project';go('/explore')">Project</button></div>
+<input class="form-control mb-2" placeholder="Cari nama, skill, atau judul..." value="${esc(EX.q)}" oninput="EX.q=this.value;exList()">
+<div class="row g-2 mb-3"><div class="col-6 col-md-3"><select class="form-select" onchange="EX.cat=this.value;exList()"><option value="">Semua kategori</option>${SEED.cats.map(c=>`<option value="${c.id}" ${EX.cat==c.id?'selected':''}>${c.n}</option>`).join('')}</select></div>
+<div class="col-6 col-md-3"><select class="form-select" onchange="EX.bud=+this.value;exList()">${['Semua budget','< Rp25rb','Rp25rb – 40rb','> Rp40rb'].map((l,i)=>`<option value="${i}" ${EX.bud==i?'selected':''}>${l}</option>`).join('')}</select></div>
+${EX.tab=='talent'?`<div class="col-6 col-md-3"><select class="form-select" onchange="EX.rat=+this.value;exList()">${[[0,'Semua rating'],[4.5,'4.5+'],[4.8,'4.8+']].map(r=>`<option value="${r[0]}" ${EX.rat==r[0]?'selected':''}>${r[1]}</option>`).join('')}</select></div><div class="col-6 col-md-3"><select class="form-select" onchange="EX.yrs=+this.value;exList()">${[[0,'Semua pengalaman'],[3,'3+ tahun'],[5,'5+ tahun']].map(r=>`<option value="${r[0]}" ${EX.yrs==r[0]?'selected':''}>${r[1]}</option>`).join('')}</select></div>`:''}</div><div class="row g-3" id="exl"></div>`}
+function exList(){const q=EX.q.toLowerCase(),inB=n=>!EX.bud||(EX.bud==1?n<25000:EX.bud==2?n>=25000&&n<=40000:n>40000);
+const src=EX.tab=='talent'?SEED.talents.filter(t=>(!q||(t.name+t.role+t.skills.map(s=>s[0]).join()).toLowerCase().includes(q))&&(!EX.cat||t.cat==EX.cat)&&inB(t.rate)&&avg(t.id)>=EX.rat&&t.yrs>=EX.yrs):DB.projects.filter(p=>(!q||(p.title+p.desc+p.skills.join()).toLowerCase().includes(q))&&(!EX.cat||p.cat==EX.cat)&&inB(p.budget));
+$('#exl').innerHTML=src.length?src.map(x=>`<div class="col-md-6 col-lg-4">${EX.tab=='talent'?tCard(x):pCard(x)}</div>`).join(''):`<div class="col-12">${empty('fa-magnifying-glass','Tidak ada hasil yang cocok.')}</div>`}
+function vTalent(id){const t=T(id);if(!t)return empty('fa-user-slash','Talent tidak ditemukan.');const rv=(DB.reviews[id]||[]).map(r=>[r.n,r.r,r.t]).concat(SEED.rev);
+return `<button class="btn btn-out btn-sm mb-3" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button><div class="pk p-4 mb-3"><div class="d-flex gap-3 align-items-center">${av(t.name,80)}<div class="flex-grow-1"><h5 class="mb-0">${t.name}</h5><small class="mut">@${t.user} · ${t.role}</small><div>${stars(avg(id))} <b>${avg(id)}</b> <small class="mut">(${rv.length} review)</small></div></div>${bmBtn(id)}</div><p class="mt-3 mb-2">${t.bio}</p><div class="d-flex justify-content-between align-items-center"><div><small class="mut">Mulai dari</small><div class="fs-5 fw-bold blue">${rp(t.rate)}</div></div><button class="btn btn-pk px-4" onclick="go('/chat/${id}')"><i class="fa fa-comment"></i> Hubungi</button></div></div>
+<div class="row g-3"><div class="col-lg-6"><div class="pk p-3 h-100"><h6>Skill</h6>${t.skills.map(s=>`<div class="mb-2"><div class="d-flex justify-content-between small"><span>${s[0]}</span><span>${s[1]}%</span></div><div class="bar"><i data-w="${s[1]}"></i></div></div>`).join('')}<h6 class="mt-3">Pengalaman</h6><p class="small mut mb-0">${t.exp}</p></div></div>
+<div class="col-lg-6"><div class="pk p-3 h-100"><h6>Portofolio</h6><div class="row g-2">${t.port.map((p,i)=>`<div class="col-4"><div class="tile" style="background:linear-gradient(135deg,${G[(i+t.name.length)%6]})" onclick="view('${esc(p)}','Karya ${t.name}','',${(i+t.name.length)%6})"><i class="fa ${cat(t.cat).i}"></i></div><small class="d-block mt-1 text-truncate">${p}</small></div>`).join('')}</div></div></div></div>
+<div class="pk p-3 mt-3"><div class="d-flex justify-content-between mb-2"><h6 class="mb-0">Review</h6><button class="btn btn-out btn-sm" onclick="addReview('${id}')">Tulis review</button></div>${rv.map(r=>`<div class="py-2 border-top"><b class="small">${esc(r[0])}</b> ${stars(r[1])}<div class="small mut">${esc(r[2])}</div></div>`).join('')}</div>`}
+function addReview(id){modal('Tulis Review',`<div class="mb-2" id="rs">${[1,2,3,4,5].map(i=>`<i class="fas fa-star fs-3 star" data-v="${i}" style="cursor:pointer" onclick="window._r=${i};$$('#rs i').forEach(x=>x.style.opacity=x.dataset.v<=${i}?1:.25)"></i>`).join(' ')}</div><textarea class="form-control" id="rt" rows="3" placeholder="Ceritakan pengalamanmu..."></textarea>`,()=>{if(!window._r||!rt.value.trim()){toast('Pilih rating & isi review');return false}(DB.reviews[id]=DB.reviews[id]||[]).unshift({n:me().name,r:window._r,t:rt.value.trim()});save();window._r=0;toast('Review terkirim ⭐');route()},'Kirim')}
+function vProject(id){const p=P(id);if(!p)return empty('fa-folder-open','Project tidak ditemukan.');const done=DB.applies.some(a=>a.p==id&&a.u==me().id);
+return `<button class="btn btn-out btn-sm mb-3" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali</button><div class="pk p-4"><div class="d-flex justify-content-between"><span class="badge-pk">${cat(p.cat).n}</span>${bmBtn(id)}</div><h4 class="mt-2">${esc(p.title)}</h4><p class="mut">${esc(p.desc)}</p>
+<div class="row g-2 mb-3"><div class="col-6"><div class="pk p-3"><small class="mut">Budget</small><div class="fw-bold blue">${rp(p.budget)}</div></div></div><div class="col-6"><div class="pk p-3"><small class="mut">Deadline</small><div class="fw-bold">${new Date(p.deadline).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}</div></div></div></div>
+<h6>Skill dibutuhkan</h6><div class="mb-3">${p.skills.map(s=>`<span class="badge-pk me-1">${esc(s)}</span>`).join('')}</div><div class="d-flex align-items-center gap-3 mb-3">${av(p.client,44)}<div><b>${esc(p.client)}</b><div class="small mut">Client · ${p.app} pelamar</div></div></div>
+<button class="btn btn-pk w-100 py-2" ${done?'disabled':''} onclick="apply('${id}')">${done?'Sudah Dilamar ✓':'Lamar Project'}</button></div>`}
+function apply(id){modal('Lamar Project','<textarea class="form-control mb-2" id="ap" rows="4" placeholder="Tulis proposal singkat..."></textarea><input class="form-control" id="al" placeholder="Link lampiran/portofolio (opsional)">',()=>{if(ap.value.trim().length<10){toast('Proposal minimal 10 karakter');return false}
+DB.applies.push({p:id,u:me().id,t:ap.value,l:al.value});P(id).app++;notify('fa-paper-plane','Lamaran untuk "'+P(id).title+'" terkirim');save();toast('Lamaran terkirim 🎉');setTimeout(()=>{notify('fa-circle-check','Lamaran diterima: '+P(id).title);toast('<i class="fa fa-bell"></i> Lamaranmu diterima!')},6000);route()},'Kirim Lamaran')}
+function vPost(){return `<h4 class="mb-3">Posting Project</h4><div class="pk p-4"><input class="form-control mb-2" id="pt" placeholder="Judul project"><textarea class="form-control mb-2" id="pd" rows="4" placeholder="Deskripsi pekerjaan"></textarea>
+<div class="row g-2 mb-2"><div class="col-md-4"><select class="form-select" id="pc">${SEED.cats.map(c=>`<option value="${c.id}">${c.n}</option>`).join('')}</select></div><div class="col-md-4"><input type="number" class="form-control" id="pb" placeholder="Budget (maks. Rp49.999)" min="1000" max="49999"></div><div class="col-md-4"><input type="date" class="form-control" id="pl"></div></div>
+<input class="form-control mb-3" id="ps" placeholder="Skill dibutuhkan (pisahkan koma)"><button class="btn btn-pk w-100 py-2" onclick="doPost()">Publikasikan Project</button></div>`}
+function doPost(){if(+pb.value>=50000)return toast('Budget maksimal Rp49.999 per project');if(pt.value.trim().length<5||pd.value.trim().length<10||!(+pb.value>0)||!pl.value)return toast('Lengkapi semua field dengan benar');
+const p={id:'p'+Date.now(),title:pt.value.trim(),desc:pd.value.trim(),cat:pc.value,budget:+pb.value,deadline:pl.value,skills:ps.value.split(',').map(s=>s.trim()).filter(Boolean),client:me().name,app:0,date:'Baru saja'};
+DB.projects.unshift(p);notify('fa-briefcase','Project "'+p.title+'" berhasil dipublikasikan');save();toast('Project dipublikasikan ✅');go('/project/'+p.id)}
+function vProfile(){const u=me(),mine=DB.projects.filter(p=>p.client==u.name);
+return `<div class="pk p-4 mb-3"><div class="d-flex gap-3 align-items-center">${av(u.name,76)}<div class="flex-grow-1"><h5 class="mb-0">${esc(u.name)}</h5><small class="mut">@${esc(u.username)} · ${u.role=='talent'?'Talent':'Client'}</small><div class="small mut">${esc(u.email)}</div></div><button class="btn btn-out btn-sm" onclick="editProf()"><i class="fa fa-pen"></i> Edit</button></div><p class="mt-3 mb-0">${esc(u.bio)}</p></div>
+<div class="row g-3"><div class="col-lg-6"><div class="pk p-3 h-100"><h6>Skill</h6>${u.skills.length?u.skills.map(s=>`<div class="mb-2"><div class="d-flex justify-content-between small"><span>${esc(s[0])}</span><span>${s[1]}%</span></div><div class="bar"><i data-w="${s[1]}"></i></div></div>`).join(''):'<small class="mut">Belum ada skill. Tambahkan lewat Edit.</small>'}<h6 class="mt-3">Pengalaman</h6><p class="small mut">${esc(u.exp)||'Belum diisi.'}</p><h6>Project Dikerjakan</h6>${u.done.length?u.done.map(d=>`<div class="small"><i class="fa fa-check blue"></i> ${esc(d)}</div>`).join(''):'<small class="mut">Belum ada.</small>'}${mine.length?`<h6 class="mt-3">Project Saya</h6>${mine.map(p=>`<div class="small blue" style="cursor:pointer" onclick="go('/project/${p.id}')">${esc(p.title)}</div>`).join('')}`:''}</div></div>
+<div class="col-lg-6"><div class="pk p-3 h-100"><div class="d-flex justify-content-between mb-2"><h6 class="mb-0">Portofolio</h6><button class="btn btn-pk btn-sm" onclick="addPort()"><i class="fa fa-plus"></i> Tambah</button></div>${u.port.length?`<div class="row g-2">${u.port.map((p,i)=>`<div class="col-6"><div class="tile" style="background:linear-gradient(135deg,${G[p.c%6]})" onclick="view('${esc(p.t).replace(/'/g,'')}','${esc(p.d).replace(/'/g,'')}','${esc(p.l)}',${p.c%6})"><i class="fa ${cat(p.k).i}"></i></div><small class="d-block text-truncate">${esc(p.t)}</small></div>`).join('')}</div>`:empty('fa-images','Belum ada karya. Tambahkan portofoliomu!')}</div></div></div>
+<div class="d-flex gap-2 mt-3"><button class="btn btn-out flex-grow-1" onclick="theme()"><i class="fa fa-moon"></i> Mode Gelap</button><button class="btn btn-out flex-grow-1 text-danger" onclick="logout()"><i class="fa fa-right-from-bracket"></i> Keluar</button></div>`}
+function editProf(){const u=me();modal('Edit Profil',`<input class="form-control mb-2" id="en" value="${esc(u.name)}" placeholder="Nama"><textarea class="form-control mb-2" id="eb" rows="3" placeholder="Bio">${esc(u.bio)}</textarea><input class="form-control mb-2" id="es" value="${esc(u.skills.map(s=>s[0]+':'+s[1]).join(', '))}" placeholder="Skill:level, mis. Figma:85, Canva:70"><input class="form-control" id="ex" value="${esc(u.exp)}" placeholder="Pengalaman">`,()=>{if(en.value.trim().length<2){toast('Nama wajib diisi');return false}
+u.name=en.value.trim();u.bio=eb.value.trim();u.exp=ex.value.trim();u.skills=es.value.split(',').map(s=>s.split(':')).filter(a=>a[0].trim()).map(a=>[a[0].trim(),Math.min(100,Math.max(10,+a[1]||70))]);save();toast('Profil diperbarui');route()})}
+function addPort(){modal('Tambah Karya',`<div class="border rounded-3 p-3 text-center mb-2 mut" style="border-style:dashed!important"><i class="fa fa-cloud-arrow-up fs-3"></i><div class="small">Simulasi upload — gambar tidak disimpan</div></div><input class="form-control mb-2" id="wt" placeholder="Judul karya"><textarea class="form-control mb-2" id="wd" rows="2" placeholder="Deskripsi"></textarea><select class="form-select mb-2" id="wk">${SEED.cats.map(c=>`<option value="${c.id}">${c.n}</option>`).join('')}</select><input class="form-control" id="wl" placeholder="Link karya (https://...)">`,()=>{if(!wt.value.trim()){toast('Judul wajib diisi');return false}me().port.push({t:wt.value.trim(),d:wd.value.trim(),k:wk.value,l:/^https?:\/\//.test(wl.value)?wl.value:'',c:Math.floor(Math.random()*6)});save();toast('Karya ditambahkan 🎨');route()})}
+function view(t,d,l,c){$('#vc').innerHTML=`<div class="d-flex flex-column align-items-center justify-content-center text-white text-center p-4 h-100" style="background:linear-gradient(135deg,${G[c]})"><button class="btn-close btn-close-white position-absolute" style="top:18px;right:18px" data-bs-dismiss="modal"></button><i class="fa fa-image" style="font-size:4rem;opacity:.85"></i><h3 class="mt-3">${t}</h3><p style="max-width:480px;opacity:.9">${d||''}</p>${l?`<a class="btn btn-light" href="${l}" target="_blank" rel="noopener">Buka Link Karya</a>`:''}</div>`;bootstrap.Modal.getOrCreateInstance($('#vw')).show()}
+function vMsgs(){const ids=Object.keys(DB.chats).filter(k=>DB.chats[k].length);return `<h4 class="mb-3">Pesan</h4>${ids.length?ids.map(k=>{const t=T(k),m=DB.chats[k].at(-1);return `<div class="pk hov p-3 mb-2 d-flex gap-3 align-items-center" onclick="go('/chat/${k}')">${av(t.name)}<div class="flex-grow-1 overflow-hidden"><b>${t.name}</b><div class="small mut text-truncate">${esc(m.t)}</div></div><small class="mut">${m.h}</small></div>`}).join(''):empty('fa-comments','Belum ada percakapan.')}<h6 class="mt-4">Mulai chat baru</h6><div class="hs">${SEED.talents.filter(t=>!ids.includes(t.id)).map(t=>`<div class="pk hov p-3 text-center" onclick="go('/chat/${t.id}')">${av(t.name,52)}<div class="small fw-semibold mt-2">${t.name}</div></div>`).join('')}</div>`}
+function vChat(id){const t=T(id);if(!t)return empty('fa-comments','Chat tidak ditemukan.');const c=DB.chats[id]||[];
+return `<div class="d-flex align-items-center gap-2 mb-2"><button class="btn btn-out btn-sm" onclick="history.back()"><i class="fa fa-arrow-left"></i></button>${av(t.name,40)}<div><b>${t.name}</b><div class="small text-success">online</div></div></div><div class="pk p-3" id="chat" style="height:58vh;overflow-y:auto">${c.length?c.map(m=>bub(m)).join(''):'<div class="empty small">Mulai percakapan dengan '+t.name+'</div>'}</div>
+<div class="d-flex gap-2 mt-2"><input class="form-control" id="ci" placeholder="Tulis pesan..." onkeydown="if(event.key=='Enter')send('${id}')"><button class="btn btn-pk px-3" onclick="send('${id}')"><i class="fa fa-paper-plane"></i></button></div>`}
+const bub=m=>`<div class="msg ${m.me?'me':'th'}">${esc(m.t)}<div style="font-size:.65rem;opacity:.7;text-align:right">${m.h}</div></div>`;
+function send(id){const v=ci.value.trim();if(!v)return;const c=DB.chats[id]=DB.chats[id]||[];const box=$('#chat');if(!c.length)box.innerHTML='';const m={me:1,t:v,h:now()};c.push(m);box.insertAdjacentHTML('beforeend',bub(m));ci.value='';box.scrollTop=box.scrollHeight;save();
+setTimeout(()=>{const R=['Terima kasih sudah menghubungi! Boleh ceritakan detail kebutuhannya?','Siap, saya bisa bantu. Estimasi pengerjaan 3–5 hari ya.','Baik, nanti saya kirim contoh karya yang relevan.'],r={me:0,t:R[Math.floor(Math.random()*R.length)],h:now()};c.push(r);save();if(location.hash=='#/chat/'+id){box.insertAdjacentHTML('beforeend',bub(r));box.scrollTop=box.scrollHeight}else toast('Pesan baru dari '+T(id).name);notify('fa-envelope',T(id).name+' mengirim pesan')},1300)}
+function vNotif(){const n=DB.notifs;setTimeout(()=>{DB.notifs.forEach(x=>x.r=1);save();badge()},800);return `<div class="d-flex justify-content-between mb-3"><h4>Notifikasi</h4>${n.length?'<button class="btn btn-out btn-sm" onclick="DB.notifs=[];save();route();badge()">Hapus semua</button>':''}</div>${n.length?n.map(x=>`<div class="pk p-3 mb-2 d-flex gap-3 align-items-center" style="${x.r?'':'border-left:4px solid var(--blue)'}"><div class="av" style="width:40px;height:40px;background:rgba(7,86,217,.12);color:var(--blue)"><i class="fa ${x.i}"></i></div><div><div class="small fw-semibold">${esc(x.t)}</div><small class="mut">${x.h}</small></div></div>`).join(''):empty('fa-bell-slash','Belum ada notifikasi.')}`}
+function vBm(){const t=SEED.talents.filter(x=>DB.bm.includes(x.id)),p=DB.projects.filter(x=>DB.bm.includes(x.id));return `<h4 class="mb-3">Bookmark</h4>${t.length+p.length?`<div class="row g-3">${t.map(x=>`<div class="col-md-6">${tCard(x)}</div>`).join('')}${p.map(x=>`<div class="col-md-6">${pCard(x)}</div>`).join('')}</div>`:empty('fa-bookmark','Belum ada yang disimpan.')}`}
+/* ===== PWA & THEME ===== */
+function theme(){const d=document.documentElement.dataset.theme=='dark'?'light':'dark';document.documentElement.dataset.theme=d;LS.pk_theme=d}
+document.documentElement.dataset.theme=LS.pk_theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+let dip;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dip=e;$('#inst').classList.remove('d-none')});
+function install(){if(dip){dip.prompt();dip=null;$('#inst').classList.add('d-none')}}
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+document.addEventListener('click',e=>{const b=e.target.closest('.btn');if(!b)return;const r=b.getBoundingClientRect(),s=document.createElement('span'),z=Math.max(r.width,r.height);s.className='rip';s.style.cssText=`width:${z}px;height:${z}px;left:${e.clientX-r.left-z/2}px;top:${e.clientY-r.top-z/2}px`;b.append(s);setTimeout(()=>s.remove(),600)});
+addEventListener('offline',()=>toast('Kamu offline — data lokal tetap tersedia'));addEventListener('online',()=>toast('Kembali online'));
+/* ===== SPLASH ===== */
+anim({targets:'#sl',scale:[.3,1],rotate:[-20,0],duration:900,easing:'easeOutElastic(1,.7)'});anim({targets:'#st',opacity:[0,1],translateY:[10,0],delay:400,duration:600});anim({targets:'#lb',width:'100%',duration:1600,easing:'easeInOutQuad'});
+setTimeout(()=>{$('#splash').style.transition='opacity .4s';$('#splash').style.opacity=0;setTimeout(boot,400)},1900);
+</script></body></html>
