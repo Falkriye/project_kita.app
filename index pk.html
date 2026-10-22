@@ -166,9 +166,9 @@ ${last&&last.s=='Ditolak'?'<div class="alert alert-danger py-2 small">Pembayaran
 <button class="btn btn-pk w-100 py-2" id="paybtn" onclick="doPay()">Saya Sudah Bayar ${rp(PRICE)}</button><button class="btn btn-out w-100 mt-2" onclick="logout()">Keluar</button>
 <div class="small mut text-center mt-3">Simulasi (prototype): tidak ada uang sungguhan. Akun aktif setelah admin mengonfirmasi pembayaran.</div>`;pickPM(PM)}
 function pickPM(m){PM=m;const u=me();$$('.pm').forEach(e=>{const on=e.dataset.m==m;e.style.borderColor=on?'var(--blue)':'';e.style.background=on?'rgba(7,86,217,.08)':''});
-$('#pmd').innerHTML=m=='qris'?`<div class="mb-2">Scan QRIS dengan aplikasi pembayaran apa pun</div><img src="images/qris.png" alt="QRIS" style="width:190px;max-width:100%;border-radius:10px;background:#fff;padding:6px" onerror="this.style.display='none';document.getElementById('qrg').style.display=''"><div id="qrg" style="display:none">${qr(u.code)}</div><div class="mt-2 mut">Referensi: <b>${u.code}</b></div>`
+$('#pmd').innerHTML=m=='qris'?`<div class="mb-2">Scan QRIS dengan aplikasi pembayaran apa pun</div><img src="images/qris.jpg" alt="QRIS" style="width:190px;max-width:100%;border-radius:10px;background:#fff;padding:6px" onerror="this.style.display='none';document.getElementById('qrg').style.display=''"><div id="qrg" style="display:none">${qr(u.code)}</div><div class="mt-2 mut">Referensi: <b>${u.code}</b></div>`
 :m=='bank'?`<div class="mb-1"><i class="fa fa-building-columns blue"></i> Transfer Bank <b>BRI</b></div><div class="fs-5 fw-bold blue" style="letter-spacing:1px">0140 0111 3336 508</div><div class="mt-1 mut">a.n. ProjectKita · Referensi: <b>${u.code}</b></div>`
-:`<div class="mb-1"><i class="fa fa-wallet blue"></i> E-Wallet <b>DANA</b></div><div class="fs-5 fw-bold blue">088214303430</div><div class="mt-1 mut">a.n. ProjectKita · Catatan/referensi: <b>${u.code}</b></div>`}
+:`<div class="mb-1"><i class="fa fa-wallet blue"></i> E-Wallet <b>DANA / ShopeePay / GoPay</b></div><div class="fs-5 fw-bold blue">088214303430</div><div class="mt-1 mut">a.n. ProjectKita · Catatan/referensi: <b>${u.code}</b></div>`}
 PM_PROOF='';$('#ppv').innerHTML='';$('#pfl').value=''
 let PM_PROOF='';
 function pickProof(inp){const f=inp.files&&inp.files[0];if(!f)return;if(!f.type.startsWith('image/'))return toast('Pilih file gambar (screenshot bukti)');
