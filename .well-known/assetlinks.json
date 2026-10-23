@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.projectkita.app",
+        "sha256_cert_fingerprints": ["10:0F:12:84:0F:ED:4F:80:6B:55:2C:7C:27:51:10:E7:49:11:15:55:1C:F9:6F:52:27:1D:6F:A7:16:D3:90:98"]
+      }
+    }]
