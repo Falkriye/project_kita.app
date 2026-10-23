@@ -129,7 +129,7 @@ async function upProof(du,tid){const b=await (await fetch(du)).blob(),path=SESS+
 async function sendTrx(o){const path=await upProof(o.du,o.id),{error}=await sb.from('transactions').insert({id:o.id,user_id:SESS,user_code:me().code,kind:o.kind,order_id:o.order_id||null,amount:o.amount,method:o.method,note:o.note,proof_path:path});if(error)throw error}
 if(!DB){DB={users:[{id:'u0',name:'Demo User',username:'demo',email:'demo@gmail.com',pw:hs('123456'),role:'talent',bio:'Freelancer kreatif yang suka membuat desain dan konten.',skills:[['Canva',85],['Content Planning',75]],exp:'2 tahun pengalaman freelance.',port:[],done:['Poster Event Kampus','Konten IG Kafe']}],
 projects:SEED.projects,bm:[],chats:{t1:[{me:0,t:'Halo, ada yang bisa dibantu?',h:'09:10'}]},reviews:{},applies:[],
-notifs:[{id:1,i:'fa-briefcase',t:'Project baru: Desain Logo Kedai Kopi',h:'2 jam lalu',r:0},{id:2,i:'fa-envelope',t:'Alya Rahmawati mengirim pesan',h:'3 jam lalu',r:0},{id:3,i:'fa-rotate',t:'Update: 5 project baru di kategori Video Editing',h:'Kemarin',r:1}]};save()}
+notifs:[{id:1,i:'fa-briefcase',t:'Project baru: Desain Logo Kedai Kopi',h:'2 jam lalu',r:0},{id:2,i:'fa-envelope',t:'Naufal Majid mengirim pesan',h:'3 jam lalu',r:0},{id:3,i:'fa-rotate',t:'Update: 5 project baru di kategori Video Editing',h:'Kemarin',r:1}]};save()}
 if((DB.ver||0)<2){DB.projects=DB.projects.map(p=>{const q=SEED.projects.find(x=>x.id==p.id);return q?{...p,title:q.title,desc:q.desc,budget:q.budget}:{...p,budget:Math.min(p.budget,49000)}});DB.ver=2;save()}
 if(DB.ver<3){DB.trx=DB.trx||[];DB.users.forEach(u=>{if(!u.code)u.code=mkCode();u.paid=false;u.role=''});DB.ver=3;save()}
 if(DB.ver<4){DB.orders=DB.orders||[];DB.trx.forEach(t=>{if(!t.k){t.k='Aktivasi Akun ProjectKita';t.act=1}});DB.ver=4;save()}
