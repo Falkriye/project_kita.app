@@ -1,0 +1,26 @@
+name: Keep Supabase alive
+
+on:
+  schedule:
+    - cron: '17 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping database Supabase
+        env:
+          SB_URL: https://aezbrpujusjwqtwmqcee.supabase.co
+          SB_KEY: sb_publishable_ZMeA-QKo7bSICo4Hu48RHA_iZntXAL9
+        run: |
+          set -e
+          curl -fsS --retry 3 --retry-delay 10 \
+            "$SB_URL/rest/v1/profiles?select=id&limit=1" \
+            -H "apikey: $SB_KEY" -o /dev/null -w "profiles: HTTP %{http_code}\n"
+          curl -sS --retry 3 --retry-delay 10 \
+            "$SB_URL/rest/v1/reviews?select=id&limit=1" \
+            -H "apikey: $SB_KEY" -o /dev/null -w "reviews: HTTP %{http_code}\n" || true
