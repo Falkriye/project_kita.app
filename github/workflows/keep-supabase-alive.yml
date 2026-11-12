@@ -1,5 +1,4 @@
-# Menjaga proyek Supabase (paket gratis) agar tidak dijeda karena sepi aktivitas.
-# Simpan di repo dengan path: .github/workflows/keep-supabase-alive.yml
+github/workflows/keep-supabase-alive.yml
 name: Keep Supabase alive
 
 on:
